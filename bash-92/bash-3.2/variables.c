@@ -92,6 +92,7 @@ extern char *the_printed_command_except_trap;
 extern char *this_command_name;
 extern char *command_execution_string;
 extern time_t shell_start_time;
+extern int import_functions;
 
 #if defined (READLINE)
 extern int no_line_editing;
@@ -309,7 +310,7 @@ initialize_shell_variables (env, privmode)
 
       /* If exported function, define it now.  Don't import functions from
 	 the environment in privileged mode. */
-      if (privmode == 0 && read_but_dont_execute == 0 && STREQN ("() {", string, 4))
+      if (import_functions && privmode == 0 && read_but_dont_execute == 0 && STREQN ("() {", string, 4))
 	{
 	  string_length = strlen (string);
 	  temp_string = (char *)xmalloc (3 + string_length + char_index);

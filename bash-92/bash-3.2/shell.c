@@ -211,6 +211,8 @@ int posixly_correct = 1;	/* Non-zero means posix.2 superset. */
 #else
 int posixly_correct = 0;	/* Non-zero means posix.2 superset. */
 #endif
+#define IMPORT_FUNCTIONS_DEF 0 /* disable importing functions as default */
+int import_functions = IMPORT_FUNCTIONS_DEF;      /* Import functions from environment */
 
 
 /* Some long-winded argument names.  These are obviously new. */
@@ -231,6 +233,7 @@ struct {
   { "help", Int, &want_initial_help, (char **)0x0 },
   { "init-file", Charp, (int *)0x0, &bashrc_file },
   { "login", Int, &make_login_shell, (char **)0x0 },
+  { "import-functions", Int, &import_functions, (char **)0x0 },
   { "noediting", Int, &no_line_editing, (char **)0x0 },
   { "noprofile", Int, &no_profile, (char **)0x0 },
   { "norc", Int, &no_rc, (char **)0x0 },
