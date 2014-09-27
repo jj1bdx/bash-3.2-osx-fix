@@ -1,1 +1,0 @@
-/Users/kenji/src/bash-fix/bash-92/build/bash.build/Release/ostype.h.build/DerivedSources/ostype.h
