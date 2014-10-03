@@ -5,8 +5,7 @@
 *NOTE: HIGHLY EXPERIMENTAL* when the `import-function` option is enabled. Use the branch `bash-3.2.54-noimport-function` to avoid merging the `import-function` patch.
 
 * See <http://apple.stackexchange.com/questions/146849/how-do-i-recompile-bash-to-avoid-shellshock-the-remote-exploit-cve-2014-6271-an>
-* Patch of bash 3.2.54 and `import-function` patch on <https://svnweb.freebsd.org/ports/head/shells/bash/files/extrapatch-import-functions?view=markup&pathrev=369341> merged
-* Patch of OOB memory access on `parser-oob-3.2.patch` at <http://seclists.org/oss-sec/2014/q3/712> also merged
+* Patch of bash 3.2.54, 3.2.55, and `import-function` patch on <https://svnweb.freebsd.org/ports/head/shells/bash/files/extrapatch-import-functions?view=markup&pathrev=369341> merged
 
 ## How to build
 
