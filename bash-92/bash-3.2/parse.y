@@ -165,6 +165,9 @@ static char *read_a_line __P((int));
 
 static int reserved_word_acceptable __P((int));
 static int yylex __P((void));
+
+static void push_heredoc __P((REDIRECT *));
+static char *mk_alexpansion __P((char *));
 static int alias_expand_token __P((char *));
 static int time_command_acceptable __P((void));
 static int special_case_tokens __P((char *));
@@ -253,20 +256,10 @@ int current_command_line_count;
 
 /* Variables to manage the task of reading here documents, because we need to
    defer the reading until after a complete command has been collected. */
-static REDIRECT **redir_stack;
-int need_here_doc;
+#define HEREDOC_MAX 16
 
-/* Pushes REDIR onto redir_stack, resizing it as needed. */
-static void
-push_redir_stack (REDIRECT *redir)
-{
-  /* Guard against oveflow. */
-  if (need_here_doc + 1 > INT_MAX / sizeof (*redir_stack))
-    abort ();
-  redir_stack = xrealloc (redir_stack,
-			  (need_here_doc + 1) * sizeof (*redir_stack));
-  redir_stack[need_here_doc++] = redir;
-}
+static REDIRECT *redir_stack[HEREDOC_MAX];
+int need_here_doc;
 
 /* Where shell input comes from.  History expansion is performed on each
    line when the shell is interactive. */
@@ -291,7 +284,7 @@ static int arith_for_lineno;
    or `for WORD' begins.  This is a nested command maximum, since the array
    index is decremented after a case, select, or for command is parsed. */
 #define MAX_CASE_NEST	128
-static int word_lineno[MAX_CASE_NEST];
+static int word_lineno[MAX_CASE_NEST+1];
 static int word_top = -1;
 
 /* If non-zero, it is the token that we want read_token to return
@@ -436,13 +429,13 @@ redirection:	'>' WORD
 			{
 			  redir.filename = $2;
 			  $$ = make_redirection (0, r_reading_until, redir);
-			  push_redir_stack ($$);
+			  push_heredoc ($$);
 			}
 	|	NUMBER LESS_LESS WORD
 			{
 			  redir.filename = $3;
 			  $$ = make_redirection ($1, r_reading_until, redir);
-			  push_redir_stack ($$);
+			  push_heredoc ($$);
 			}
 	|	LESS_LESS_LESS WORD
 			{
@@ -499,14 +492,14 @@ redirection:	'>' WORD
 			  redir.filename = $2;
 			  $$ = make_redirection
 			    (0, r_deblank_reading_until, redir);
-			  push_redir_stack ($$);
+			  push_heredoc ($$);
 			}
 	|	NUMBER LESS_LESS_MINUS WORD
 			{
 			  redir.filename = $3;
 			  $$ = make_redirection
 			    ($1, r_deblank_reading_until, redir);
-			  push_redir_stack ($$);
+			  push_heredoc ($$);
 			}
 	|	GREATER_AND '-'
 			{
@@ -2225,6 +2218,21 @@ yylex ()
    which allow ESAC to be the next one read. */
 static int esacs_needed_count;
 
+static void
+push_heredoc (r)
+     REDIRECT *r;
+{
+  if (need_here_doc >= HEREDOC_MAX)
+    {
+      last_command_exit_value = EX_BADUSAGE;
+      need_here_doc = 0;
+      report_syntax_error (_("maximum here-document count exceeded"));
+      reset_parser ();
+      exit_shell (last_command_exit_value);
+    }
+  redir_stack[need_here_doc++] = r;
+}
+
 void
 gather_here_documents ()
 {
@@ -3781,7 +3789,7 @@ got_token:
     case CASE:
     case SELECT:
     case FOR:
-      if (word_top + 1 < MAX_CASE_NEST)
+      if (word_top < MAX_CASE_NEST)
 	word_top++;
       word_lineno[word_top] = line_number;
       break;
