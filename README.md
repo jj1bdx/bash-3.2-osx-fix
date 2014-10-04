@@ -5,7 +5,7 @@
 *NOTE: EXPERIMENTAL:* functions from environment variables are *NOT* imported as default when the `import-function` option is enabled. Use the branch `bash-3.2.55-noimport-function` to avoid merging the `import-function` patch.
 
 * See <http://apple.stackexchange.com/questions/146849/how-do-i-recompile-bash-to-avoid-shellshock-the-remote-exploit-cve-2014-6271-an>
-* Patch of bash 3.2.54, 3.2.55, and `import-function` patch on <https://svnweb.freebsd.org/ports/head/shells/bash/files/extrapatch-import-functions?view=markup&pathrev=369341> merged
+* Patch of bash 3.2.54, 3.2.55, 3.2.56, and `import-function` patch at <https://svnweb.freebsd.org/ports/head/shells/bash/files/extrapatch-import-functions?view=markup&pathrev=369341> are merged
 
 ## How to build
 
