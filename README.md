@@ -1,6 +1,6 @@
 # bash-3.2 for OS X 10.9
 
-*NOTE: EXPERIMENTAL:* functions from environment variables are *NOT* imported as default when the `import-function` option is compiled. The `master` branch has this option enabled, for better security.
+*NOTE: EXPERIMENTAL:* functions from environment variables are *NOT* imported as default when the `import-functions` option is compiled. The `master` branch has this option enabled, for better security. You can verify the list of valid command options by `bash --help`.
 
 Use the branch `bash-3.2.57-noimport-function` if you want to avoid merging the `import-function` patch.
 
