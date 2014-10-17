@@ -1,4 +1,4 @@
-# bash-3.2 for OS X 10.9
+# bash-3.2 for OS X 10.9 and 10.10
 
 *NOTE: EXPERIMENTAL:* functions from environment variables are *NOT* imported as default when the `import-functions` option is compiled. The `master` branch has this option enabled, for better security. You can verify the list of valid command options by `bash --help`.
 
@@ -8,6 +8,8 @@ Use the branch `bash-3.2.57-noimport-function` if you want to avoid merging the 
 * Patch of bash 3.2.54, 3.2.55, 3.2.56, 3.2.57, and `import-function` patch at <https://svnweb.freebsd.org/ports/head/shells/bash/files/extrapatch-import-functions?view=markup&pathrev=369341> are merged
 
 ## Apple has released an official patch
+
+* 18-OCT-2014: The `/bin/bash` of OS X 10.10 Yosemite is bash-3.2.53.
 
 * 30-SEP-2014: Apple has released [OS X bash Update 1.0 - OS X Mavericks](http://support.apple.com/kb/DL1769), the official release of bash-3.2.53 for OS X 10.9.x. Updates for Mountain Lion and Lion are also available.
 
