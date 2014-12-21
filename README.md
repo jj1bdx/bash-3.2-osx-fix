@@ -1,6 +1,6 @@
 # bash-3.2 for OS X 10.9 and 10.10
 
-* [GNU bash]<http://www.gnu.org/software/bash/> for OS X.
+* [GNU bash](http://www.gnu.org/software/bash/) for OS X.
 * Current version: 3.2.57
 
 *NOTE: EXPERIMENTAL:* functions from environment variables are *NOT* imported as default when the `import-functions` option is compiled. The `master` branch has this option enabled, for better security. You can verify the list of valid command options by `bash --help`.
