@@ -14,7 +14,7 @@ Use the branch `bash-3.2.57-noimport-function` if you want to avoid merging the 
 
 ## Apple has released an official patch
 
-* 1-OCT-2015: The `/bin/bash` of OS X 10.11 El Captain is bash-3.2.57(1).
+* 1-OCT-2015: The `/bin/bash` of OS X 10.11 El Capitan is bash-3.2.57(1).
 
 * 18-OCT-2014: The `/bin/bash` of OS X 10.10 Yosemite is bash-3.2.53.
 
