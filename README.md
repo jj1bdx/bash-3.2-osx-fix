@@ -1,5 +1,7 @@
 # bash-3.2 for OS X 10.9 and 10.10
 
+*NOTE WELL:* This software is not applicable to 10.11 unless disabling the [File System Protections](https://developer.apple.com/library/mac/documentation/Security/Conceptual/System_Integrity_Protection_Guide/FileSystemProtections/FileSystemProtections.html).
+
 * [GNU bash](http://www.gnu.org/software/bash/) for OS X.
 * Current version: 3.2.57
 
@@ -11,6 +13,8 @@ Use the branch `bash-3.2.57-noimport-function` if you want to avoid merging the 
 * Patch of bash 3.2.54, 3.2.55, 3.2.56, 3.2.57, and `import-function` patch at <https://svnweb.freebsd.org/ports/head/shells/bash/files/extrapatch-import-functions?view=markup&pathrev=369341> are merged
 
 ## Apple has released an official patch
+
+* 1-OCT-2015: The `/bin/bash` of OS X 10.11 El Captain is bash-3.2.57(1).
 
 * 18-OCT-2014: The `/bin/bash` of OS X 10.10 Yosemite is bash-3.2.53.
 
